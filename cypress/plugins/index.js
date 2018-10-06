@@ -16,11 +16,13 @@ const webpack = require('@cypress/webpack-preprocessor')
 const cucumber = require('cypress-cucumber-preprocessor').default
 
 module.exports = (on, config) => {
-  on('file:preprocessor', webpack({
-    webpackOptions: require('@vue/cli-service/webpack.config'),
-    watchOptions: {}
-  }))
-  on('file:preprocessor', cucumber())
+  on('file:preprocessor', (file) => {
+    if (file.filePath.match(/\.(js|jsx)/g)) {
+      return webpack(config)(file)
+    } else {
+      return cucumber()(file)
+    }
+  })
 
   return config
 }

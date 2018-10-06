@@ -2,6 +2,6 @@ Feature: HomeScreen
 
   Cucumber and Cypress work well together.
 
-  Scenario: "Hello World" is operational
+  Scenario: VueJS default home page
     Given I am on the "home" page
-    Then I should see "Hello World"
+    Then I should see "Welcome to Your Vue.js App"
